@@ -7,11 +7,11 @@ const login = (username, password) => {
   return axios.post(`${prefixUrl}/login`, { username, password });
 }
 
-const register = (refreshToken) => {
-  return axios.post(`${prefixUrl}/register`, { refreshToken });
+const refreshToken = (refreshToken) => {
+  return axios.post(`${prefixUrl}/refreshToken`, { refreshToken });
 }
 
 export default {
   login,
-  register
+  refreshToken
 }

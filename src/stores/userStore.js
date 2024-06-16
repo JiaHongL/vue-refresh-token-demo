@@ -13,6 +13,11 @@ export const useUserStore = defineStore('user', () => {
   const profile = ref({});
   const router = useRouter();
 
+  const setTokens = (newAccessToken, newRefreshToken) => {
+    accessToken.value = newAccessToken;
+    refreshToken.value = newRefreshToken;
+  }
+
   const login = (username, password) => {
     return authApi.login(username, password).then((response) => {
       accessToken.value = response.data.data.accessToken;
@@ -66,6 +71,7 @@ export const useUserStore = defineStore('user', () => {
     refreshToken,
     categories,
     profile,
+    setTokens,
     login,
     getCategories,
     getProfile,
