@@ -1,10 +1,11 @@
 <script setup>
 import { computed, ref } from 'vue'
 import { useRouter } from 'vue-router'
-import { useAuthStore } from '@/stores/auth'
+import { useUserStore } from '@/stores/userStore'
 
 const router = useRouter()
-const authStore = useAuthStore()
+const userStore = useUserStore()
+const { registerUser } = userStore
 
 const username = ref('joe')
 const password = ref('test')
@@ -14,7 +15,7 @@ const isFormValid = computed(() => {
 
 const onSubmit = () => {
   if (isFormValid.value) {
-    authStore
+    userStore
     .login(username.value, password.value)
     .then((res) => {
       router.push({ name: 'Home' })
@@ -83,6 +84,7 @@ const onSubmit = () => {
             <hr />
             <div>
               <button
+                @click="registerUser"
                 type="button"
                 class="flex w-full cursor-pointer justify-center rounded-full bg-green-400 p-3 font-semibold tracking-wide text-gray-100 shadow-lg transition duration-500 ease-in hover:bg-green-500"
               >

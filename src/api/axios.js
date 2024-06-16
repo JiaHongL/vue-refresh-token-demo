@@ -1,5 +1,6 @@
 // src/axios.js
 import axios from 'axios';
+import { useUserStore } from '@/stores/userStore';
 
 const instance = axios.create({
   baseURL: import.meta.env.VITE_API_BASE_URL,
@@ -8,11 +9,11 @@ const instance = axios.create({
 
 instance.interceptors.request.use(
   config => {
-    // const userStore = useUserStore();
-    // const token = userStore.token;
-    // if (token) {
-      // config.headers.Authorization = `Bearer ${token}`;
-    // }
+    const userStore = useUserStore();
+    const token = userStore.accessToken;
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
+    }
     return config;
   },
   error => {
