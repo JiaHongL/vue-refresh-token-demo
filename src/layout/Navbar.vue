@@ -25,7 +25,7 @@ const {
     >
       vue-refresh-token-demo
     </RouterLink>
-    <ul class="menu menu-horizontal p-0 text-white">
+    <ul class="menu menu-horizontal p-0 text-white hidden md:flex">
       <li v-for="category in categories" :key="category">
         <a>{{category}}</a>
       </li>
